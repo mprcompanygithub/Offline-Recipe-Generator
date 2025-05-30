@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe Generator</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #fdfdfd;
+        margin: 0;
+        padding: 2em;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 650px;
+        width: 100%;
+        margin: auto;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      button {
+        margin-top: 1em;
+        padding: 10px 20px;
+        font-size: 1em;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #output {
+        text-align: left;
+        max-width: 120%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background-color: #f8f8f8;
+        padding: 1em;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-top: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Offline Recipe Generator</h2>
+      <textarea
+        id="ingredients"
+        rows="5"
+        placeholder="Enter ingredients like: eggs, flour, sugar"
+      ></textarea
+      ><br />
+      <button onclick="generateRecipe()">Generate Recipe</button>
+
+      <h3>Generated Recipe:</h3>
+      <pre id="output"></pre>
+    </div>
+
+    <script>
+      async function generateRecipe() {
+        const ingredients = document.getElementById("ingredients").value;
+        const response = await fetch("http://localhost:8000/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ingredients }),
+        });
+        const data = await response.json();
+        document.getElementById("output").textContent = data.recipe;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+Offline Recipe Generator
+
+Steps to Do Online Recipe Generator using Ingredients : 
+
+1) Install Ollama
+
+2) Pull DeepSeek model using Ollama (e.g., ollama pull deepseek-r1:1.5b)
+
+3) Install Python 3.8+
+
+4) Create FastAPI backend with /generate route ==> Task1Backend.py
+
+5) Install required Python packages (fastapi, uvicorn, requests) ==>pip install
+
+6) Set up CORS middleware in FastAPI for frontend communication  ==> Task1Backend.py
+
+7) Create HTML frontend (textarea, button, pre for output) ==> website.html
+
+8) Create generateRecipe() function in frontend to send POST request ==> website.html
+
+9) Connect FastAPI to DeepSeek via HTTP request (model inference) ==> Task1Backend.py
+
+10) Run FastAPI server (uvicorn Task1Backend:app --reload)
+
+11) Send request from frontend ,you can see the output in frontend after sometime and requests in Terminal. 
